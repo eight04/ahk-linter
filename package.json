@@ -1,0 +1,16 @@
+{
+  "name": "ahk-linter",
+  "version": "0.0.0",
+  "description": "Linter for AHK (Autohotkey)",
+  "author": "eight04 <eight04@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "test": "eslint \"**/*.js\" --cache",
+    "preversion": "npm test",
+    "postversion": "git push --follow-tags && npm publish"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  }
+}

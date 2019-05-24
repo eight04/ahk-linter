@@ -1,0 +1,19 @@
+{
+	"env": {
+		"es6": true,
+		"browser": true,
+		"webextensions": true
+	},
+	"rules": {
+    "max-statements-per-line": [2, {"max": 1}],
+		"no-use-before-define": [2, "nofunc"],
+		"semi": [2, "always"],
+		"no-console": ["error", {"allow": ["warn", "error"]}]
+	},
+	"extends": [
+		"eslint:recommended"
+	],
+  "parserOptions": {
+    "ecmaVersion": 2019
+  }
+}
