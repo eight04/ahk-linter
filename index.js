@@ -71,12 +71,26 @@ function lint(code) {
 
 function parse(code) {
   const state = {
+    comments: [],
     code,
     tokens: [...tokenize(code)],
     token(offset = 0) {
-      return this.i + offset < this.tokens.length ?
-        this.tokens[this.i + offset] :
-        null;
+      return this.eof(offset) ? null : this.tokens[this.i + offset];
+    },
+    tryCollectComment() {
+      const token = this.token();
+      if (!token || token.type !== "comment") {
+        return false;
+      }
+      this.comments.push(token);
+      this.tokens.splice(state.i, 1);
+      return true;
+    },
+    eof(offset = 0) {
+      return this.i + offset >= this.tokens.length || this.i + offset < 0;
+    },
+    inLine(line) {
+      return this.token().line === line;
     },
     i: 0,
     value: null
@@ -87,7 +101,11 @@ function parse(code) {
 
 function parseBody(state) {
   const body = [];
-  while (state.i < state.tokens.length) {
+  while (!state.eof()) {
+    // debugger;
+    if (state.tryCollectComment()) {
+      continue;
+    }
     if (isHashCommand(state)) {
       parseHashCommand(state);
       body.push(state.value);
@@ -96,7 +114,11 @@ function parseBody(state) {
       body.push(state.value);
     } else {
       parseExpression(state);
-      body.push(state.value);
+      if (state.value) {
+        body.push(state.value);
+      } else {
+        throw new Error("Unexpected token");
+      }
     }
   }
   state.value = {
@@ -107,7 +129,11 @@ function parseBody(state) {
 
 function parseParameters(state) {
   parseExpression(state);
-  state.value = [...expandComma(state.value)];
+  if (state.value) {
+    state.value = [...expandComma(state.value)];
+  } else {
+    state.value = [];
+  }
 }
 
 function * expandComma(exp) {
@@ -170,6 +196,7 @@ function parseExpression(state, precedenceFloor = -1) {
           end: token.end,
           value: token.value
         };
+        state.i++;
       } else if (OP1_PRECEDENCE.hasOwnProperty(lowerCaseValue)) {
         state.i++;
         parseExpression(state, OP1_PRECEDENCE[lowerCaseValue]);
@@ -220,6 +247,7 @@ function parseExpression(state, precedenceFloor = -1) {
         OP2_PRECEDENCE[lowerCaseValue] > precedenceFloor ||
         OP2_PRECEDENCE[lowerCaseValue] == precedenceFloor && isRHOp(token)
       )) {
+        state.i++;
         parseExpression(state, OP2_PRECEDENCE[lowerCaseValue]);
         left = {
           type: "BinaryOperatorExpression",
@@ -289,9 +317,10 @@ function parseCommand(state) {
     type: "Command",
     name: nameToken.value,
     start: nameToken.start,
-    end: params.length ? params[params.length - 1] : nameToken.end,
+    end: (params.length ? params[params.length - 1] : nameToken).end,
     line: nameToken.line,
-    col: nameToken.col
+    col: nameToken.col,
+    params
   };
 }
 
@@ -299,8 +328,11 @@ function parseCommandParams(state, line) {
   const params = [];
   let firstToken;
   let lastToken;
-  let token;
-  while ((token = state.token()) && token.line === line) {
+  while (state.inLine(line)) {
+    if (state.tryCollectComment()) {
+      continue;
+    }
+    const token = state.token();
     if (token.value === ",") {
       if (!firstToken) {
         params.push(null);
@@ -312,6 +344,7 @@ function parseCommandParams(state, line) {
     } else {
       lastToken = token;
     }
+    state.i++;
   }
   if (firstToken) {
     collectParam();
@@ -349,7 +382,7 @@ function parseHashCommand(state) {
 }
 
 function * tokenize(code) {
-  const re = /([\r\n]+)|([^\S\r\n]+)|(\d+)|(\w+)|(;.*)|(\bnew\b|\/\/=|>>=|<<=|\+\+|--|\*\*|\/\/|<<|>>|~=|<=|>=|==|<>|!=|not|and|&&|or|\|\||:=|\+=|-=|\*=|\/=|\.=|\|=|&=|^=)|(\S)/iy;
+  const re = /(\r\n|\n|\r)|([^\S\r\n]+)|(\d+)|(\w+)|(;.*)|(\bnew\b|\/\/=|>>=|<<=|\+\+|--|\*\*|\/\/|<<|>>|~=|<=|>=|==|<>|!=|not|and|&&|or|\|\||:=|\+=|-=|\*=|\/=|\.=|\|=|&=|^=)|(\S)/iy;
   let match;
   let line = 0;
   let col = 0;
@@ -388,4 +421,4 @@ function * tokenize(code) {
   }
 }
 
-module.exports = {lint};
+module.exports = {lint, parse};
