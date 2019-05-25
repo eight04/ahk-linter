@@ -1,7 +1,72 @@
-const RX_WHITESPACE = /\s+/y;
-const RX_LF = /\r?\n/;
+const OP1_PRECEDENCE = {
+  "not": 5,
+  "-": 14,
+  "!": 14,
+  "~": 14,
+  "&": 14,
+  "*": 14,
+  "++": 16,
+  "--": 16,
+  "new": 17,
+  
+};
+
+const OP2_PRECEDENCE = {
+  ",": 0,
+  ":=": 1,
+  "+=": 1,
+  "-=": 1,
+  "*=": 1,
+  "/=": 1,
+  "//=": 1,
+  ".=": 1,
+  "|=": 1,
+  "&=": 1,
+  "^=": 1,
+  ">>=": 1,
+  "<<=": 1,
+  "?": 2,
+  ":": 2,
+  "or": 3,
+  "||": 3,
+  "and": 4,
+  "&&": 4,
+  "=": 6,
+  "==": 6,
+  "<>": 6,
+  "!=": 6,
+  ">": 7,
+  "<": 7,
+  ">=": 7,
+  "<=": 7,
+  "~-": 8,
+  ".": 9,
+  "&": 10,
+  "^": 10,
+  "|": 10,
+  "<<": 11,
+  ">>": 11,
+  "+": 12,
+  "-": 12,
+  "*": 13,
+  "/": 13,
+  "//": 13,
+  "**": 15,
+  "MEMBER_ACCESS": 18
+};
+
+function isRHOp(token) {
+  return token.value.endsWith("=") &&
+    OP2_PRECEDENCE[token.value] < OP2_PRECEDENCE["=="];
+}
+
+function isRHUnary(token) {
+  return token.value === "++" || token.value === "--";
+}
 
 function lint(code) {
+  const ast = parse(code);
+  console.log(ast);
 }
 
 function parse(code) {
@@ -11,7 +76,7 @@ function parse(code) {
     token(offset = 0) {
       return this.i + offset < this.tokens.length ?
         this.tokens[this.i + offset] :
-        null
+        null;
     },
     i: 0,
     value: null
@@ -22,9 +87,7 @@ function parse(code) {
 
 function parseBody(state) {
   const body = [];
-  let line = {};
   while (state.i < state.tokens.length) {
-    const token = state.tokens[state.i];
     if (isHashCommand(state)) {
       parseHashCommand(state);
       body.push(state.value);
@@ -42,30 +105,35 @@ function parseBody(state) {
   };
 }
 
-function parseCommaExpression(state) {
-  const body = [];
-  while (state) {
-    
+function parseParameters(state) {
+  parseExpression(state);
+  state.value = [...expandComma(state.value)];
+}
+
+function * expandComma(exp) {
+  if (exp.type === "BinaryOperatorExpression" && exp.name === ",") {
+    yield exp.left;
+    yield * expandComma(exp.right);
+  } else {
+    yield exp;
   }
 }
 
-function isContinuation(token) {
-  // return /,|/.test(token.value);
-}
-
-function parseExpression(state, stopAt) {
+function parseExpression(state, precedenceFloor = -1) {
   let left;
   let token;
   let line = state.token().line;
   while ((token = state.token())) {
-    // FIXME: this is wrong
+    // expression ends with line end
     if (token.line !== line) {
-      if (!isContinuation(token)) {
-        state.i--;
+      if (token.type === "symbol") {
+        // multiline continuation
+        line = token.line;
+      } else {
         break;
       }
-      line = token.line;
     }
+    const lowerCaseValue = token.value.toLowerCase();
     if (!left) {
       if (token.type === "word") {
         const nextToken = state.token(1);
@@ -93,11 +161,20 @@ function parseExpression(state, stopAt) {
           };
         }
         state.i++;
-      } else if (isOp1(token)) {
-        state.i++;
-        parseExpression(state, token);
+      } else if (token.type === "number") {
         left = {
-          type: "UnaryExpression",
+          type: "Number",
+          line: token.line,
+          col: token.col,
+          start: token.start,
+          end: token.end,
+          value: token.value
+        };
+      } else if (OP1_PRECEDENCE.hasOwnProperty(lowerCaseValue)) {
+        state.i++;
+        parseExpression(state, OP1_PRECEDENCE[lowerCaseValue]);
+        left = {
+          type: "UnaryOperatorExpression",
           name: token.value,
           expression: state.value,
           line: token.line,
@@ -107,7 +184,7 @@ function parseExpression(state, stopAt) {
         };
       } else if (token.value === "(") {
         state.i++;
-        parseExpression(state, token);
+        parseExpression(state);
         left = {
           type: "GroupExpression",
           line: token.line,
@@ -117,32 +194,46 @@ function parseExpression(state, stopAt) {
           expression: state.value
         };
         state.i++;
+      /* FIXME: you can only variable expand expression *right after* an identifier?
+      } else if (token.value === "%") {
+        state.i++;
+        state.assertType("word");
+        const id = state.token().value;
+        state.i++;
+        state.assertValue("%");
+        left = {
+          type: "VariableExpression",
+          line: token.line,
+          col: token.col,
+          start: token.start,
+          end: state.token().end,
+          id
+        };
+        state.i++;
+      */
       } else {
-        throw new Error("Unexpected token");
+        // expression end?
+        break;
       }
     } else {
-      if (isOp2(token)) {
-        if (stopAt && getPrecedence(stopAt) >= getPrecedence(token) && stopAt.value !== ":=") {
-          // assignment is always right-hand first
-          break;
-        }
-        parseExpression(state, token);
+      if (OP2_PRECEDENCE.hasOwnProperty(lowerCaseValue) && (
+        OP2_PRECEDENCE[lowerCaseValue] > precedenceFloor ||
+        OP2_PRECEDENCE[lowerCaseValue] == precedenceFloor && isRHOp(token)
+      )) {
+        parseExpression(state, OP2_PRECEDENCE[lowerCaseValue]);
         left = {
-          type: "OperatorExpression",
+          type: "BinaryOperatorExpression",
           name: token.value,
           left,
-          right: state.value
+          right: state.value,
           line: token.line,
           col: token.col,
           start: token.start,
           end: state.value.end
         };
-      } else if (isOp1(token, true)) {
-        if (stopAt && getPrecedence(stopAt) >= getPrecedence(token)) {
-          break;
-        }
+      } else if (isRHUnary(token)) {
         left = {
-          type: "UnaryExpression",
+          type: "UnaryOperatorExpression",
           rightHand: true,
           name: token.value,
           expression: left,
@@ -151,21 +242,24 @@ function parseExpression(state, stopAt) {
           start: left.start,
           end: token.end
         };
-      } else {
-        if (stopAt && getPrecedence(stopAt) >= CONCAT_OPERATOR_PRECEDENCE) {
-          break;
+      } else if (OP2_PRECEDENCE["."] > precedenceFloor) {
+        // implicit concat expression
+        parseExpression(state, OP2_PRECEDENCE["."]);
+        if (!state.value) {
+          // concat if right hand is a valid expression
+          left = {
+            type: "BinaryOperatorExpression",
+            name: ".",
+            left,
+            right: state.value,
+            line: left.line,
+            col: left.col,
+            start: left.start,
+            end: state.value.end
+          };
         }
-        // concat expression
-        parseExpression(state, {value: " "});
-        left = {
-          type: "ConcatExpression",
-          left,
-          right: state.value,
-          line: left.line,
-          col: left.col,
-          start: left.start,
-          end: state.value.end
-        };
+      } else {
+        break;
       }
     }
   }
@@ -182,7 +276,59 @@ function isCommand(state) {
 }
 
 function parseCommand(state) {
+  const nameToken = state.token();
   
+  state.i++;
+  if (state.token().value === ",") {
+    state.i++;
+  }
+  parseCommandParams(state, nameToken.line);
+  const params = state.value;
+  
+  state.value = {
+    type: "Command",
+    name: nameToken.value,
+    start: nameToken.start,
+    end: params.length ? params[params.length - 1] : nameToken.end,
+    line: nameToken.line,
+    col: nameToken.col
+  };
+}
+
+function parseCommandParams(state, line) {
+  const params = [];
+  let firstToken;
+  let lastToken;
+  let token;
+  while ((token = state.token()) && token.line === line) {
+    if (token.value === ",") {
+      if (!firstToken) {
+        params.push(null);
+      } else {
+        collectParam();
+      }
+    } else if (!firstToken) {
+      firstToken = lastToken = token;
+    } else {
+      lastToken = token;
+    }
+  }
+  if (firstToken) {
+    collectParam();
+  }
+  state.value = params;
+  
+  function collectParam() {
+    params.push({
+      type: "String",
+      value: state.code.slice(firstToken.start, lastToken.end),
+      start: firstToken.start,
+      end: lastToken.end,
+      line: firstToken.line,
+      col: lastToken.col
+    });
+    firstToken = lastToken = null;
+  }
 }
 
 function isHashCommand(state) {
@@ -194,59 +340,20 @@ function isHashCommand(state) {
 }
 
 function parseHashCommand(state) {
-  
-}
-
-{
-  type: ""
-  wsBefore: " "
-  wsAfter: " "
-}
-function parseBody(code) {
-  const tokens = 
-  const body = [];
-  for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i].type === "whitespace" && !tokens[i].newLine)
-  }
-  for (const token of tokenize(code)) {
-    if (token.value === "#") {
-      body.push({
-        type: "HashCommand",
-        name: ""
-        params: []
-        line: token.line,
-        col: token.col
-      });
-    }
-  }
-}
-
-function parseHash();
-
-function parseWhitespace(state) {
-  RX_WHITESPACE.lastIndex = state.lastIndex;
-  const match = RX_WHITESPACE.exec(state.text);
-  const lines = match[0].split(RX_LF);
-  if (lines.length >= 1) {
-    state.line += lines.length - 1;
-    state.col = textWidth(lines[lines.length - 1]);
-  } else {
-    state.col += textWidth(lines[0]);
-  }
-  state.lastIndex += match[0].length;
-  state.index = state.lastIndex;
-}
-
-function textWidth(text) {
-  return text.replace("\t", "  ").length;
+  const token = state.token();
+  state.i++;
+  parseCommand(state);
+  state.value.start = token.start;
+  state.value.col = token.col;
+  state.value.type = "HashCommand";
 }
 
 function * tokenize(code) {
-  const re = /([\r\n]+)|([^\S\r\n]+)|(\d+)|(\w+)|(;.*)|()|(\S)/y;
+  const re = /([\r\n]+)|([^\S\r\n]+)|(\d+)|(\w+)|(;.*)|(\bnew\b|\/\/=|>>=|<<=|\+\+|--|\*\*|\/\/|<<|>>|~=|<=|>=|==|<>|!=|not|and|&&|or|\|\||:=|\+=|-=|\*=|\/=|\.=|\|=|&=|^=)|(\S)/iy;
   let match;
   let line = 0;
   let col = 0;
-  while (match = re.exec(code)) {
+  while ((match = re.exec(code))) {
     if (match[1]) {
       line++;
       col = 0;
@@ -259,6 +366,9 @@ function * tokenize(code) {
         yield token("word");
       } else if (match[5]) {
         yield token("comment");
+      } else if (match[6]) {
+        // multi-char operator?
+        yield token("symbol");
       } else {
         yield token("symbol");
       }
