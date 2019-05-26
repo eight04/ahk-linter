@@ -2,7 +2,7 @@
   "type": "Literal",
   "raw": "3.1415",
   "value": 3.1415,
-  "start": 0,
+  "start": 1,
   "end": 6,
   "line": 0,
   "col": 0
