@@ -1,0 +1,17 @@
+{
+  "type": "UnaryExpression",
+  "name": "-",
+  "line": 0,
+  "col": 0,
+  "start": 0,
+  "end": 5,
+  "expression": {
+    "type": "Literal",
+    "raw": "0123",
+    "value": 123,
+    "start": 1,
+    "end": 5,
+    "line": 0,
+    "col": 0
+  }
+}
