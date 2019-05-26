@@ -1,0 +1,58 @@
+{
+  "type": "ObjectExpression",
+  "start": 0,
+  "end": 18,
+  "line": 0,
+  "col": 0,
+  "properties": [
+    {
+      "type": "Property",
+      "key": {
+        "type": "Identifier",
+        "name": "a",
+        "start": 1,
+        "end": 2,
+        "col": 1,
+        "line": 0
+      },
+      "value": {
+        "type": "Literal",
+        "value": "a",
+        "raw": "\"a\"",
+        "start": 4,
+        "end": 7,
+        "line": 0,
+        "col": 4
+      },
+      "start": 1,
+      "end": 7,
+      "line": 0,
+      "col": 1
+    },
+    {
+      "type": "Property",
+      "key": {
+        "type": "Literal",
+        "value": "b",
+        "raw": "\"b\"",
+        "start": 9,
+        "end": 12,
+        "line": 0,
+        "col": 9
+      },
+      "value": {
+        "type": "Literal",
+        "value": "b",
+        "raw": "\"b\"",
+        "start": 14,
+        "end": 17,
+        "line": 0,
+        "col": 14
+      },
+      "start": 9,
+      "end": 17,
+      "line": 0,
+      "col": 9
+    }
+  ]
+}
