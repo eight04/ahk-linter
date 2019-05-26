@@ -1,0 +1,3 @@
+foo:
+MsgBox, foo
+return
