@@ -13,8 +13,6 @@
   "devDependencies": {
     "assert-json": "^0.1.2",
     "eslint": "^5.16.0",
-    "mocha": "^6.1.4",
-    "ordered-json": "^0.1.1",
-    "ordered-object": "^0.2.1"
+    "mocha": "^6.1.4"
   }
 }
