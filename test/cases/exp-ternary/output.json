@@ -1,9 +1,70 @@
 {
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
+  "type": "BinaryExpression",
+  "name": ":=",
+  "left": {
+    "type": "Identifier",
+    "name": "a",
+    "start": 0,
+    "end": 1,
+    "line": 0,
+    "col": 0
+  },
+  "right": {
+    "type": "ConditionalExpression",
+    "test": {
+      "type": "Identifier",
+      "name": "b",
+      "start": 5,
+      "end": 6,
+      "line": 0,
+      "col": 5
+    },
+    "consequent": {
+      "type": "Identifier",
+      "name": "c",
+      "start": 9,
+      "end": 10,
+      "line": 0,
+      "col": 9
+    },
+    "alternate": {
+      "type": "ConditionalExpression",
+      "test": {
+        "type": "Identifier",
+        "name": "d",
+        "start": 13,
+        "end": 14,
+        "line": 0,
+        "col": 13
+      },
+      "consequent": {
+        "type": "Identifier",
+        "name": "e",
+        "start": 17,
+        "end": 18,
+        "line": 0,
+        "col": 17
+      },
+      "alternate": {
+        "type": "Identifier",
+        "name": "f",
+        "start": 21,
+        "end": 22,
+        "line": 0,
+        "col": 21
+      },
+      "start": 13,
+      "end": 22,
+      "line": 0,
+      "col": 13
+    },
+    "start": 5,
+    "end": 22,
+    "line": 0,
+    "col": 5
+  },
   "start": 0,
-  "end": 31,
+  "end": 22,
   "line": 0,
   "col": 0
 }
