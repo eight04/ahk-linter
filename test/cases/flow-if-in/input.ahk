@@ -1,3 +1,4 @@
-if a in %myList%,foo,bar {
+if a in %myList%,foo,bar
+{
   MsgBox, foo
 }

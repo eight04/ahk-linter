@@ -25,6 +25,8 @@ MsgBox, Hello World!
   });
 ```
 
+node.line/node.col is used to calculated continuation lines.
+
 Changelog
 ---------
 
