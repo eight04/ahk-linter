@@ -1,3 +1,4 @@
-if a is number {
+if a is number
+{
   MsgBox, foo
 }

@@ -1,9 +1,70 @@
 {
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
+  "type": "IfStatement",
+  "test": {
+    "type": "IsInExpression",
+    "left": {
+      "type": "Identifier",
+      "name": "a",
+      "start": 3,
+      "end": 4,
+      "line": 0,
+      "col": 3
+    },
+    "right": {
+      "type": "LegacyLiteral",
+      "value": "%myList%,foo,bar",
+      "raw": "%myList%,foo,bar",
+      "start": 8,
+      "end": 24,
+      "line": 0,
+      "col": 8
+    },
+    "operator": "in",
+    "reverse": false,
+    "start": 3,
+    "end": 24,
+    "line": 0,
+    "col": 3
+  },
+  "consequent": {
+    "type": "BlockStatement",
+    "body": [
+      {
+        "type": "CommandStatement",
+        "command": {
+          "type": "Identifier",
+          "name": "MsgBox",
+          "start": 29,
+          "end": 35,
+          "line": 2,
+          "col": 2
+        },
+        "params": [
+          {
+            "type": "LegacyLiteral",
+            "value": "foo",
+            "raw": "foo",
+            "start": 37,
+            "end": 40,
+            "line": 2,
+            "col": 10
+          }
+        ],
+        "hash": false,
+        "start": 29,
+        "end": 40,
+        "line": 2,
+        "col": 2
+      }
+    ],
+    "start": 25,
+    "end": 42,
+    "line": 1,
+    "col": 0
+  },
+  "alternate": null,
   "start": 0,
-  "end": 31,
+  "end": 42,
   "line": 0,
   "col": 0
 }
