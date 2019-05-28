@@ -1,9 +1,55 @@
 {
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
+  "type": "FunctionDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "Swap",
+    "start": 0,
+    "end": 4,
+    "line": 0,
+    "col": 0
+  },
+  "params": [
+    {
+      "type": "ByRefExpression",
+      "argument": {
+        "type": "Identifier",
+        "name": "Left",
+        "start": 11,
+        "end": 15,
+        "line": 0,
+        "col": 11
+      },
+      "start": 5,
+      "end": 15,
+      "line": 0,
+      "col": 5
+    },
+    {
+      "type": "ByRefExpression",
+      "argument": {
+        "type": "Identifier",
+        "name": "Right",
+        "start": 23,
+        "end": 28,
+        "line": 0,
+        "col": 23
+      },
+      "start": 17,
+      "end": 28,
+      "line": 0,
+      "col": 17
+    }
+  ],
+  "body": {
+    "type": "BlockStatement",
+    "body": [],
+    "start": 30,
+    "end": 32,
+    "line": 0,
+    "col": 30
+  },
   "start": 0,
-  "end": 31,
+  "end": 32,
   "line": 0,
   "col": 0
 }

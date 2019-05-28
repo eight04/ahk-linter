@@ -1,9 +1,83 @@
 {
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
+  "type": "FunctionDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "foo",
+    "start": 0,
+    "end": 3,
+    "line": 0,
+    "col": 0
+  },
+  "params": [
+    {
+      "type": "Identifier",
+      "name": "a",
+      "start": 4,
+      "end": 5,
+      "line": 0,
+      "col": 4
+    },
+    {
+      "type": "Identifier",
+      "name": "b",
+      "start": 7,
+      "end": 8,
+      "line": 0,
+      "col": 7
+    },
+    {
+      "type": "AssignmentPattern",
+      "left": {
+        "type": "Identifier",
+        "name": "c",
+        "start": 10,
+        "end": 11,
+        "line": 0,
+        "col": 10
+      },
+      "right": {
+        "type": "Literal",
+        "value": 1,
+        "raw": "1",
+        "start": 15,
+        "end": 16,
+        "line": 0,
+        "col": 15
+      },
+      "start":10,
+      "end": 16,
+      "line": 0,
+      "col": 10
+    }
+  ],
+  "body": {
+    "type": "BlockStatement",
+    "body": [
+      {
+        "type": "CommandStatement",
+        "command": {
+          "type": "Identifier",
+          "name": "bar",
+          "start": 22,
+          "end": 25,
+          "line": 1,
+          "col": 2
+        },
+        "arguments": [],
+        "hash": false,
+        "start": 22,
+        "end": 25,
+        "line": 1,
+        "col": 2
+      }
+    ],
+    "start": 18,
+    "end": 27,
+    "line": 0,
+    "col": 18
+  },
   "start": 0,
-  "end": 31,
+  "end": 27,
   "line": 0,
   "col": 0
 }

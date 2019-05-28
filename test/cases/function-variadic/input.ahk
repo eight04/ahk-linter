@@ -1,3 +1,1 @@
-Join(sep, params*) {
-  return
-}
+Join(sep, params*) {}
