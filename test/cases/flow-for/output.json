@@ -37,7 +37,7 @@
           "line": 1,
           "col": 2
         },
-        "params": [
+        "arguments": [
           {
             "type": "LegacyLiteral",
             "value": "OK",
@@ -60,6 +60,7 @@
     "line": 0,
     "col": 22
   },
+  "until": null,
   "start": 0,
   "end": 38,
   "line": 0,

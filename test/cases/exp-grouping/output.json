@@ -1,6 +1,6 @@
 {
   "type": "BinaryExpression",
-  "name": "*",
+  "operator": "*",
   "start": 0,
   "end": 17,
   "line": 0,
@@ -11,9 +11,9 @@
     "col": 0,
     "start": 0,
     "end": 7,
-    "expression": {
+    "argument": {
       "type": "BinaryExpression",
-      "name": "+",
+      "operator": "+",
       "line": 0,
       "col": 1,
       "start": 1,
@@ -42,9 +42,9 @@
     "end": 17,
     "line": 0,
     "col": 10,
-    "expression": {
+    "argument": {
       "type": "BinaryExpression",
-      "name": "/",
+      "operator": "/",
       "start": 11,
       "end": 16,
       "line": 0,

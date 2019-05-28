@@ -1,9 +1,56 @@
 {
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
+  "type": "LoopStatement",
+  "loopType": "count",
+  "arguments": [
+    {
+      "type": "LegacyLiteral",
+      "value": "3",
+      "raw": "3",
+      "start": 5,
+      "end": 6,
+      "line": 0,
+      "col": 5
+    }
+  ],
+  "body": {
+    "type": "BlockStatement",
+    "body": [
+      {
+        "type": "CommandStatement",
+        "command": {
+          "type": "Identifier",
+          "name": "MsgBox",
+          "start": 11,
+          "end": 17,
+          "line": 1,
+          "col": 2
+        },
+        "arguments": [
+          {
+            "type": "LegacyLiteral",
+            "value": "OK",
+            "raw": "OK",
+            "start": 19,
+            "end": 21,
+            "line": 1,
+            "col": 10
+          }
+        ],
+        "hash": false,
+        "start": 11,
+        "end": 21,
+        "line": 1,
+        "col": 2
+      }
+    ],
+    "start": 7,
+    "end": 23,
+    "line": 0,
+    "col": 7
+  },
+  "until": null,
   "start": 0,
-  "end": 31,
+  "end": 23,
   "line": 0,
   "col": 0
 }

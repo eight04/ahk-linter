@@ -4,7 +4,7 @@
   "end": 20,
   "line": 0,
   "col": 0,
-  "expression": {
+  "argument": {
     "type": "ObjectExpression",
     "start": 1,
     "end": 19,

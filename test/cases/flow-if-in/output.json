@@ -39,7 +39,7 @@
           "line": 2,
           "col": 2
         },
-        "params": [
+        "arguments": [
           {
             "type": "LegacyLiteral",
             "value": "foo",

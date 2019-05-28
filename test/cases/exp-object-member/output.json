@@ -1,6 +1,6 @@
 {
   "type": "GroupExpression",
-  "expression": {
+  "argument": {
     "type": "MemberExpression",
     "object": {
       "type": "Identifier",

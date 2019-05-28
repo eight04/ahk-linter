@@ -1,11 +1,12 @@
 {
   "type": "UnaryExpression",
-  "name": "-",
+  "operator": "-",
+  "prefix": true,
   "line": 0,
   "col": 0,
   "start": 0,
   "end": 5,
-  "expression": {
+  "argument": {
     "type": "Literal",
     "raw": "0123",
     "value": 123,

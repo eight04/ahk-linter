@@ -1,6 +1,6 @@
 {
   "type": "BinaryExpression",
-  "name": ":=",
+  "operator": ":=",
   "start": 0,
   "end": 30,
   "line": 0,

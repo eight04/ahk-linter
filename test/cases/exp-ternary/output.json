@@ -1,6 +1,6 @@
 {
   "type": "BinaryExpression",
-  "name": ":=",
+  "operator": ":=",
   "left": {
     "type": "Identifier",
     "name": "a",

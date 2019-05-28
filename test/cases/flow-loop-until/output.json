@@ -1,9 +1,67 @@
 {
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
+  "type": "LoopStatement",
+  "loopType": "count",
+  "arguments": [],
+  "body": {
+    "type": "BlockStatement",
+    "body": [
+      {
+        "type": "BinaryExpression",
+        "operator": "*=",
+        "left": {
+          "type": "Identifier",
+          "name": "x",
+          "start": 9,
+          "end": 10,
+          "line": 1,
+          "col": 2
+        },
+        "right": {
+          "type": "Literal",
+          "value": 2,
+          "raw": "2",
+          "start": 14,
+          "end": 15,
+          "line": 1,
+          "col":7
+        },
+        "start": 9,
+        "end": 15,
+        "line": 1,
+        "col": 2
+      }
+    ],
+    "start": 5,
+    "end": 17,
+    "line": 0,
+    "col": 5
+  },
+  "until": {
+    "type": "BinaryExpression",
+    "operator": ">",
+    "left": {
+      "type": "Identifier",
+      "name": "x",
+      "start": 24,
+      "end": 25,
+      "line": 2,
+      "col":8
+    },
+    "right": {
+      "type": "Identifier",
+      "name": "y",
+      "start": 28,
+      "end": 29,
+      "line": 2,
+      "col": 12
+    },
+    "start": 24,
+    "end": 29,
+    "line": 2,
+    "col": 8
+  },
   "start": 0,
-  "end": 31,
+  "end": 29,
   "line": 0,
   "col": 0
 }
