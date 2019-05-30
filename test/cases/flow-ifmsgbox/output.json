@@ -1,0 +1,43 @@
+{
+  "type": "IfMsgBoxStatement",
+  "buttonName": {
+    "type": "LegacyLiteral",
+    "value": "OK",
+    "raw": "OK",
+    "start": 10,
+    "end": 12,
+    "line": 0,
+    "col": 10
+  },
+  "consequent": {
+    "type": "BlockStatement",
+    "body": [
+      {
+        "type": "CommandStatement",
+        "command": {
+          "type": "Identifier",
+          "name": "return",
+          "start": 18,
+          "end": 24,
+          "line": 1,
+          "col": 2
+        },
+        "arguments": [],
+        "hash": false,
+        "start": 18,
+        "end": 24,
+        "line": 1,
+        "col": 2
+      }
+    ],
+    "start": 14,
+    "end": 26,
+    "line": 0,
+    "col": 14
+  },
+  "alternate": null,
+  "start": 0,
+  "end": 26,
+  "line": 0,
+  "col": 0
+}

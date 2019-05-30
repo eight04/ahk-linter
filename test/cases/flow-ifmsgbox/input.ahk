@@ -1,0 +1,3 @@
+ifMsgBox, OK, {
+  return
+}
