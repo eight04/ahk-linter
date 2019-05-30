@@ -1,0 +1,24 @@
+{
+  "type": "LegacyAssignmentExpression",
+  "left": {
+    "type": "Identifier",
+    "name": "a",
+    "start": 0,
+    "end": 1,
+    "line": 0,
+    "col": 0
+  },
+  "right": {
+    "type": "LegacyLiteral",
+    "value": "b + 5",
+    "raw": "b + 5",
+    "start": 4,
+    "end": 9,
+    "line": 0,
+    "col": 4
+  },
+  "start": 0,
+  "end": 9,
+  "line": 0,
+  "col": 0
+}
