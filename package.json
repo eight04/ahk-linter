@@ -4,7 +4,12 @@
   "description": "Linter for AHK (Autohotkey)",
   "author": "eight04 <eight04@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "estree-walker": "^0.6.1",
+    "neodoc": "^2.0.2",
+    "node-glob": "^1.2.0"
+  },
   "scripts": {
     "test": "eslint \"**/*.js\" --cache && c8 --reporter lcov mocha",
     "preversion": "npm test",
@@ -15,5 +20,8 @@
     "c8": "^5.0.1",
     "eslint": "^5.16.0",
     "mocha": "^6.1.4"
+  },
+  "bin": {
+    "ahklint": "./cli.js"
   }
 }

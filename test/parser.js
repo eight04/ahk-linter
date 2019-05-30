@@ -3,7 +3,7 @@ const fs = require("fs");
 const assertJSON = require("assert-json");
 const {parse} = require("../lib/parser");
 
-describe("cases", () => {
+describe("parser", () => {
   for (const name of fs.readdirSync(`${__dirname}/cases`)) {
     it(name, () => {
       const code = fs.readFileSync(`${__dirname}/cases/${name}/input.ahk`, "utf8")
