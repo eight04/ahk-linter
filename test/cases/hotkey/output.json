@@ -1,9 +1,45 @@
-{
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
-  "start": 0,
-  "end": 31,
-  "line": 0,
-  "col": 0
-}
+[
+  {
+    "type": "HotkeyStatement",
+    "modifier": {
+      "type": "LegacyLiteral",
+      "value": "#",
+      "raw": "#",
+      "start": 0,
+      "end": 1,
+      "line": 0,
+      "col": 0
+    },
+    "prefixKey": null,
+    "key": {
+      "type": "Identifier",
+      "name": "n",
+      "start": 1,
+      "end": 2,
+      "line": 0,
+      "col": 1
+    },
+    "execute": null,
+    "start": 0,
+    "end": 4,
+    "line": 0,
+    "col": 0
+  },
+  {
+    "type": "CommandStatement",
+    "command": {
+      "type": "Identifier",
+      "name": "return",
+      "start": 5,
+      "end": 11,
+      "line": 1,
+      "col": 0
+    },
+    "arguments": [],
+    "hash": false,
+    "start": 5,
+    "end": 11,
+    "line": 1,
+    "col": 0
+  }
+]

@@ -1,9 +1,65 @@
-{
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
-  "start": 0,
-  "end": 31,
-  "line": 0,
-  "col": 0
-}
+[
+  {
+    "type": "HotstringStatement",
+    "options": [],
+    "hotstring": {
+      "type": "LegacyLiteral",
+      "value": "btw",
+      "raw": "btw",
+      "start": 2,
+      "end": 5,
+      "line": 0,
+      "col": 2
+    },
+    "execute": null,
+    "replacement": null,
+    "start": 0,
+    "end": 7,
+    "line": 0,
+    "col": 0
+  },
+  {
+    "type": "CommandStatement",
+    "command": {
+      "type": "Identifier",
+      "name": "MsgBox",
+      "start": 8,
+      "end": 14,
+      "line": 1,
+      "col": 0
+    },
+    "arguments": [
+      {
+        "type": "LegacyLiteral",
+        "value": "You typed \"btw\".",
+        "raw": "You typed \"btw\".",
+        "start": 15,
+        "end": 31,
+        "line": 1,
+        "col": 7
+      }
+    ],
+    "hash": false,
+    "start": 8,
+    "end": 31,
+    "line": 1,
+    "col": 0
+  },
+  {
+    "type": "CommandStatement",
+    "command": {
+      "type": "Identifier",
+      "name": "return",
+      "start": 32,
+      "end": 38,
+      "line": 2,
+      "col": 0
+    },
+    "hash": false,
+    "arguments": [],
+    "start": 32,
+    "end": 38,
+    "line": 2,
+    "col": 0
+  }
+]

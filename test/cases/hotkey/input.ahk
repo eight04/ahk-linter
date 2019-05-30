@@ -1,3 +1,2 @@
 #n::
-Run, foo
 return
