@@ -6,12 +6,13 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "test": "eslint \"**/*.js\" --cache && mocha",
+    "test": "eslint \"**/*.js\" --cache && c8 --reporter lcov mocha",
     "preversion": "npm test",
     "postversion": "git push --follow-tags && npm publish"
   },
   "devDependencies": {
     "assert-json": "^0.1.5",
+    "c8": "^5.0.1",
     "eslint": "^5.16.0",
     "mocha": "^6.1.4"
   }
