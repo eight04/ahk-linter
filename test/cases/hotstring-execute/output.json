@@ -1,0 +1,47 @@
+{
+  "type": "HotstringStatement",
+  "hotstring": {
+    "type": "LegacyLiteral",
+    "value": "foo",
+    "raw": "foo",
+    "start": 3,
+    "end": 6,
+    "line": 0,
+    "col": 3
+  },
+  "options": [
+    "x"
+  ],
+  "execute": {
+    "type": "CommandStatement",
+    "command": {
+      "type": "Identifier",
+      "name": "MsgBox",
+      "start": 8,
+      "end": 14,
+      "line": 0,
+      "col": 8
+    },
+    "hash": false,
+    "arguments": [
+      {
+        "type": "LegacyLiteral",
+        "value": "FOO",
+        "raw": "FOO",
+        "start": 15,
+        "end": 18,
+        "line": 0,
+        "col": 15
+      }
+    ],
+    "start": 8,
+    "end": 18,
+    "line": 0,
+    "col": 8
+  },
+  "replacement": null,
+  "start": 0,
+  "end": 18,
+  "line": 0,
+  "col": 0
+}

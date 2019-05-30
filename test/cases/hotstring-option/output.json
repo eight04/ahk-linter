@@ -1,9 +1,30 @@
 {
-  "type": "Literal",
-  "raw": "\"She said, \"\"An apple a day.\"\"\"",
-  "value": "She said, \"An apple a day.\"",
+  "type": "HotstringStatement",
+  "hotstring": {
+    "type": "LegacyLiteral",
+    "value": "<em>",
+    "raw": "<em>",
+    "start": 5,
+    "end": 9,
+    "line": 0,
+    "col": 5
+  },
+  "options": [
+    "*",
+    "b0"
+  ],
+  "replacement": {
+    "type": "LegacyLiteral",
+    "value": "</em>{left 5}",
+    "raw": "</em>{left 5}",
+    "start": 11,
+    "end": 24,
+    "line": 0,
+    "col": 11
+  },
+  "execute": null,
   "start": 0,
-  "end": 31,
+  "end": 24,
   "line": 0,
   "col": 0
 }
