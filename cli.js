@@ -22,11 +22,15 @@ const {lint} = require("./index");
   for (const file of args["<file>"]) {
     let code;
     try {
-      code = await fs.readFile(file);
+      code = await fs.readFile(file, "utf8");
     } catch (err) {
       const files = await glob(file);
       for (const file of files) {
-        const code = await fs.readFile(file);
+        const stat = await fs.stat(file);
+        if (stat.isDirectory()) {
+          continue;
+        }
+        const code = await fs.readFile(file, "utf8");
         profile.add(path.resolve(file), code);
       }
       continue;
@@ -34,7 +38,8 @@ const {lint} = require("./index");
     profile.add(path.resolve(file), code);
   }
   profile.exitWithError();
-})();
+})()
+  .catch(console.error);
 
 function createProfile() {
   let errorCount = 0;
@@ -49,12 +54,12 @@ function createProfile() {
       return;
     }
     console.log(`${fileCount ? "\n" : ""}${file}`);
-    const maxMessageWidth = result.reduce(
-      (len, r) => Math.max(len, r.message.length),
+    const maxCodeWidth = result.reduce(
+      (len, r) => Math.max(len, r.code.length),
       0
     );
     for (const r of result) {
-      console.log(`${String(r.line + 1).padStart(4, " ")}:${String(r.col + 1).padEnd(3, " ")}${r.message.padEnd(maxMessageWidth + 1, " ")}${r.code}`);
+      console.log(`${String(r.line + 1).padStart(4, " ")}:${String(r.col + 1).padEnd(2, " ")} ${r.message}  (${r.code.padEnd(maxCodeWidth, " ")})`);
     }
     errorFileCount++;
     errorCount += result.length;
@@ -64,10 +69,14 @@ function createProfile() {
     if (!fileCount) {
       console.log(chalk.red("please specify a file"));
     } else if (errorCount) {
-      console.log(chalk.red(`\nfound ${errorCount} error(s) in ${errorFileCount} files`));
+      console.log(chalk.red(`\nfound ${plural(errorCount, "error")} in ${plural(errorFileCount, "file")}`));
     } else {
-      console.log(chalk.green("processed ${fileCount} files, no error found"));
+      console.log(chalk.green(`processed ${plural(fileCount, "file")}, no error found`));
     }
     process.exit(errorCount ? 1 : 0);
+  }
+  
+  function plural(i, t) {
+    return `${i} ${t}${i > 1 ? "s" : ""}`;
   }
 }
