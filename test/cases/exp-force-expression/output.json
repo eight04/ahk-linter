@@ -1,0 +1,49 @@
+{
+  "type": "CommandStatement",
+  "command": {
+    "type": "Identifier",
+    "name": "foo",
+    "start": 0,
+    "end": 3,
+    "line": 0,
+    "col": 0
+  },
+  "hash": false,
+  "arguments": [
+    {
+      "type": "ForcedExpression",
+      "argument": {
+        "type": "BinaryExpression",
+        "operator": "+",
+        "left": {
+          "type": "Identifier",
+          "name": "a",
+          "start": 7,
+          "end": 8,
+          "line": 0,
+          "col": 7
+        },
+        "right": {
+          "type": "Identifier",
+          "name": "b",
+          "start": 11,
+          "end": 12,
+          "line": 0,
+          "col": 11
+        },
+        "start": 7,
+        "end": 12,
+        "line": 0,
+        "col": 7
+      },
+      "start": 5,
+      "end": 12,
+      "line": 0,
+      "col": 5
+    }
+  ],
+  "start": 0,
+  "end": 12,
+  "line": 0,
+  "col": 0
+}
