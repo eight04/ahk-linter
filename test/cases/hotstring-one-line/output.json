@@ -2,7 +2,7 @@
   "type": "HotstringStatement",
   "options": [],
   "hotstring": {
-    "type": "LegacyLiteral",
+    "type": "EscapedString",
     "value": "btw",
     "raw": "btw",
     "start": 2,
@@ -11,7 +11,7 @@
     "col": 2
   },
   "replacement": {
-    "type": "LegacyLiteral",
+    "type": "EscapedString",
     "value": "by the way",
     "raw": "by the way",
     "start": 7,

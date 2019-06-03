@@ -1,7 +1,7 @@
 {
   "type": "HotstringStatement",
   "hotstring": {
-    "type": "LegacyLiteral",
+    "type": "EscapedString",
     "value": "foo",
     "raw": "foo",
     "start": 3,
@@ -28,6 +28,7 @@
         "type": "LegacyLiteral",
         "value": "FOO",
         "raw": "FOO",
+        "variables": [],
         "start": 15,
         "end": 18,
         "line": 0,

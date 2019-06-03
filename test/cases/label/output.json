@@ -2,7 +2,7 @@
   {
     "type": "LabeledStatement",
     "label": {
-      "type": "LegacyLiteral",
+      "type": "EscapedString",
       "value": "foo",
       "raw": "foo",
       "start": 0,
@@ -26,6 +26,7 @@
           "type": "LegacyLiteral",
           "value": "foo",
           "raw": "foo",
+          "variables": [],
           "start": 13,
           "end": 16,
           "line": 1,

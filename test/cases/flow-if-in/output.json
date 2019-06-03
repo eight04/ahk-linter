@@ -14,6 +14,16 @@
       "type": "LegacyLiteral",
       "value": "%myList%,foo,bar",
       "raw": "%myList%,foo,bar",
+      "variables": [
+        {
+          "type": "Identifier",
+          "name": "myList",
+          "start": 9,
+          "end": 15,
+          "line": 0,
+          "col": 9
+        }
+      ],
       "start": 8,
       "end": 24,
       "line": 0,
@@ -44,6 +54,7 @@
             "type": "LegacyLiteral",
             "value": "foo",
             "raw": "foo",
+            "variables": [],
             "start": 37,
             "end": 40,
             "line": 2,

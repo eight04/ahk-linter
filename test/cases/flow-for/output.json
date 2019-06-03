@@ -42,6 +42,7 @@
             "type": "LegacyLiteral",
             "value": "OK",
             "raw": "OK",
+            "variables": [],
             "start": 34,
             "end": 36,
             "line": 1,

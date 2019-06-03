@@ -26,6 +26,7 @@
             "type": "LegacyLiteral",
             "value": "bar",
             "raw": "bar",
+            "variables": [],
             "start": 21,
             "end": 24,
             "line": 1,

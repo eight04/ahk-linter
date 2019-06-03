@@ -12,6 +12,7 @@
     "type": "LegacyLiteral",
     "value": "b + 5",
     "raw": "b + 5",
+    "variables": [],
     "start": 4,
     "end": 9,
     "line": 0,

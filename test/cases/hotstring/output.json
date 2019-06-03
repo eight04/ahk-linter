@@ -3,7 +3,7 @@
     "type": "HotstringStatement",
     "options": [],
     "hotstring": {
-      "type": "LegacyLiteral",
+      "type": "EscapedString",
       "value": "btw",
       "raw": "btw",
       "start": 2,
@@ -33,6 +33,7 @@
         "type": "LegacyLiteral",
         "value": "You typed \"btw\".",
         "raw": "You typed \"btw\".",
+        "variables": [],
         "start": 15,
         "end": 31,
         "line": 1,

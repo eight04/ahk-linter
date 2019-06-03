@@ -1,0 +1,37 @@
+{
+  "type": "CommandStatement",
+  "command": {
+    "type": "Identifier",
+    "name": "foo",
+    "start": 0,
+    "end": 3,
+    "line": 0,
+    "col": 0
+  },
+  "hash": false,
+  "arguments": [
+    {
+      "type": "LegacyLiteral",
+      "value": "a %b% c",
+      "raw": "a %b% c",
+      "variables": [
+        {
+          "type": "Identifier",
+          "name": "b",
+          "start": 8,
+          "end": 9,
+          "line": 0,
+          "col": 8
+        }
+      ],
+      "start": 5,
+      "end": 12,
+      "line": 0,
+      "col": 5
+    }
+  ],
+  "start": 0,
+  "end": 12,
+  "line": 0,
+  "col": 0
+}

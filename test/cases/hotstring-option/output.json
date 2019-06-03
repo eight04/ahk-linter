@@ -1,7 +1,7 @@
 {
   "type": "HotstringStatement",
   "hotstring": {
-    "type": "LegacyLiteral",
+    "type": "EscapedString",
     "value": "<em>",
     "raw": "<em>",
     "start": 5,
@@ -14,7 +14,7 @@
     "b0"
   ],
   "replacement": {
-    "type": "LegacyLiteral",
+    "type": "EscapedString",
     "value": "</em>{left 5}",
     "raw": "</em>{left 5}",
     "start": 11,

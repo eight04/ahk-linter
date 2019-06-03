@@ -2,7 +2,7 @@
   {
     "type": "HotkeyStatement",
     "modifier": {
-      "type": "LegacyLiteral",
+      "type": "EscapedString",
       "value": "#",
       "raw": "#",
       "start": 0,
