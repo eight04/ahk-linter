@@ -1,0 +1,42 @@
+{
+  "type": "ClassDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "Foo",
+    "start": 6,
+    "end": 9,
+    "line": 0,
+    "col": 6
+  },
+  "superClass": null,
+  "body": [
+    {
+      "type": "ClassMethod",
+      "id": {
+        "type": "Identifier",
+        "name": "bar",
+        "start": 14,
+        "end": 17,
+        "line": 1,
+        "col": 2
+      },
+      "params": [],
+      "body": {
+        "type": "BlockStatement",
+        "body": [],
+        "start": 20,
+        "end": 25,
+        "line": 1,
+        "col": 8
+      },
+      "start": 14,
+      "end": 25,
+      "line": 1,
+      "col": 2
+    }
+  ],
+  "start": 0,
+  "end": 27,
+  "line": 0,
+  "col": 0
+}

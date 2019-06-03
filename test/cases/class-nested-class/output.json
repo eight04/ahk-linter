@@ -1,0 +1,35 @@
+{
+  "type": "ClassDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "Foo",
+    "start": 6,
+    "end": 9,
+    "line": 0,
+    "col": 6
+  },
+  "superClass": null,
+  "body": [
+    {
+      "type": "ClassDeclaration",
+      "id": {
+        "type": "Identifier",
+        "name": "Bar",
+        "start": 20,
+        "end": 23,
+        "line": 1,
+        "col": 8
+      },
+      "superClass": null,
+      "body": [],
+      "start": 14,
+      "end": 29,
+      "line": 1,
+      "col": 2
+    }
+  ],
+  "start": 0,
+  "end": 31,
+  "line": 0,
+  "col": 0
+}

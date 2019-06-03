@@ -1,0 +1,110 @@
+{
+  "type": "ClassDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "Foo",
+    "start": 6,
+    "end": 9,
+    "line": 0,
+    "col": 6
+  },
+  "superClass": null,
+  "body": [
+    {
+      "type": "ClassVariable",
+      "static": false,
+      "declarations": [
+        {
+          "type": "AssignmentPattern",
+          "left": {
+            "type": "Identifier",
+            "name": "a",
+            "start": 14,
+            "end": 15,
+            "line": 1,
+            "col": 2
+          },
+          "right": {
+            "type": "Literal",
+            "value": 1,
+            "raw": "1",
+            "start": 19,
+            "end": 20,
+            "line": 1,
+            "col": 7
+          },
+          "start": 14,
+          "end": 20,
+          "line": 1,
+          "col": 2
+        },
+        {
+          "type": "AssignmentPattern",
+          "left": {
+            "type": "Identifier",
+            "name": "b",
+            "start": 22,
+            "end": 23,
+            "line": 1,
+            "col": 10
+          },
+          "right": {
+            "type": "Literal",
+            "value": 2,
+            "raw": "2",
+            "start": 27,
+            "end": 28,
+            "line": 1,
+            "col": 15
+          },
+          "start": 22,
+          "end": 28,
+          "line": 1,
+          "col": 10
+        }
+      ],
+      "start": 14,
+      "end": 28,
+      "line": 1,
+      "col": 2
+    },
+    {
+      "type": "ClassVariable",
+      "static": true,
+      "declarations": [
+        {
+          "type": "AssignmentPattern",
+          "left": {
+            "type": "Identifier",
+            "name": "c",
+            "start": 38,
+            "end": 29,
+            "line": 2,
+            "col": 9
+          },
+          "right": {
+            "type": "Literal",
+            "value": 3,
+            "raw": "3",
+            "start": 43,
+            "end": 44,
+            "line": 2,
+            "col": 14
+          },
+          "start": 38,
+          "end": 44,
+          "line": 2,
+          "col": 9
+        }
+      ],
+      "start": 31,
+      "end": 44,
+      "line": 2,
+      "col": 2
+    }
+  ],
+  "start": 0,
+  "end": 25,
+  "line": 0,
+  "col": 0
+}
