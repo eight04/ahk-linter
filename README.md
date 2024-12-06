@@ -3,6 +3,10 @@ AHK Linter
 
 Linter for AHK (Autohotkey).
 
+> **NOTE**: This is a work in progress. It is not yet ready for use.
+
+> **NOTE**: The development of this project is currently on hold. If you just need a syntax checker in the editor, try [vscode-ahk2-lsp](https://github.com/thqby/vscode-autohotkey2-lsp).
+
 Installation
 ------------
 
